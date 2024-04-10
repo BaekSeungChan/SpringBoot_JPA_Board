@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(of = {"id", "title", "content", "writer"})
+//@Table(name = "tbl_board")
 public class Board extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +33,7 @@ public class Board extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
+
     public Board(String title, String content, String writer, Member member){
         this.title = title;
         this.content = content;
@@ -46,4 +48,12 @@ public class Board extends BaseEntity {
         member.getBoardList().add(this);
     }
 
+
+    //update 메소드
+    public void changeTitle(String title) {
+        this.title = title;
+    }
+    public void changeContent(String content) {
+        this.content = content;
+    }
 }
