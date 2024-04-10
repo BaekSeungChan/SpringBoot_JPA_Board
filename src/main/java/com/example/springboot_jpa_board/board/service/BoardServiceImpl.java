@@ -25,4 +25,24 @@ public class BoardServiceImpl implements BoardService{
         Board board = result.orElseThrow();
         return entityToDTO(board);
     }
+
+    @Override
+    public Long register(BoardDTO boardDTO) {
+
+        Board board = dtoToEntity(boardDTO);
+
+        Board result = boardRepository.save(board);
+
+        return result.getId();
+    }
+
+    @Override
+    public void modify(BoardDTO boardDTO) {
+
+    }
+
+    @Override
+    public void remove(Long id) {
+        boardRepository.deleteById(id);
+    }
 }

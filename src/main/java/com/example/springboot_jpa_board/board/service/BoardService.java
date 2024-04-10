@@ -10,6 +10,12 @@ public interface BoardService {
 
     BoardDTO get(Long id);
 
+    Long register(BoardDTO boardDTO);
+
+    void modify(BoardDTO boardDTO);
+
+    void remove(Long id);
+
 
     default BoardDTO entityToDTO(Board board){
         return BoardDTO.builder()
