@@ -1,1 +1,19 @@
-spring.application.name=SpringBoot_JPA_Board
+spring:
+  datasource:
+    url: "jdbc:mariadb://localhost:3306/webdb"
+    username: "root"
+    password: "Qortmdcks95"
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
+
+
+logging.level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
