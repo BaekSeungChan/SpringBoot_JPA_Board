@@ -30,7 +30,8 @@ public class Member extends BaseEntity {
 
     private String phone; // 전화번호
 
-    private String gender; // 성별
+    @Enumerated(EnumType.STRING)
+    private Gender gender; // 성별
 
     @OneToMany(mappedBy = "member")
     @Builder.Default

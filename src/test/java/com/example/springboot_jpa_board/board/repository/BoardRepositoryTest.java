@@ -1,6 +1,7 @@
 package com.example.springboot_jpa_board.board.repository;
 
 import com.example.springboot_jpa_board.board.entity.Board;
+import com.example.springboot_jpa_board.member.entity.Gender;
 import com.example.springboot_jpa_board.member.entity.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -27,7 +28,7 @@ class BoardRepositoryTest {
                 .userName("백승찬")
                 .address("경기도")
                 .phone("010")
-                .gender("남")
+                .gender(Gender.MEN)
                 .build();
 
         em.persist(member);
