@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(of = {"id", "userId", "userPassword", "userName", "address", "phone", "gender"})
 public class Member extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +33,7 @@ public class Member extends BaseEntity {
     private String gender; // 성별
 
     @OneToMany(mappedBy = "member")
+    @Builder.Default
     private List<Board> boardList = new ArrayList<>();
 
 }

@@ -3,10 +3,7 @@ package com.example.springboot_jpa_board.board.entity;
 import com.example.springboot_jpa_board.common.BaseEntity;
 import com.example.springboot_jpa_board.member.entity.Member;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -15,6 +12,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(of = {"id", "title", "content", "writer"})
 public class Board extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
