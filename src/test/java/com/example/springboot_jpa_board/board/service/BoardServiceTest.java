@@ -58,5 +58,24 @@ class BoardServiceTest {
     }
 
 
+    @Test
+    public void testModify(){
+        BoardDTO boardDTO = BoardDTO.builder()
+                .id(105L)
+                .title("^^^^^^^")
+                .content("ㅠㅜㅠㅠㅠㅠ")
+                .build();
+
+        boardService.modify(boardDTO);
+
+    }
+
+    @Test
+    public void testRemove(){
+
+        boardService.remove(103L);
+    }
+
+
 
 }

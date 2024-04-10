@@ -38,7 +38,14 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public void modify(BoardDTO boardDTO) {
+        Optional<Board> result = boardRepository.findById(boardDTO.getId());
 
+        Board board = result.orElseThrow();
+
+        board.changeTitle(boardDTO.getTitle());
+        board.changeContent(boardDTO.getContent());
+
+        boardRepository.save(board);
     }
 
     @Override
