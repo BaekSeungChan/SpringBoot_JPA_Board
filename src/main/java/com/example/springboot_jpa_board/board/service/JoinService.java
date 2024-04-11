@@ -16,6 +16,12 @@ public class JoinService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void joinPrecess(JoinDTO joinDTO){
+        boolean isUser = userRepository.existsByUsername(joinDTO.getUsername());
+
+        if(isUser){
+            return;
+        }
+
 
         UserEntity data = new UserEntity();
 
