@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,12 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-login page
-<hr>
-<form action="/joinProc" method="post" name="joinForm">
-    <input type="text" name="username" placeholder="Username"/>
-    <input type="password" name="password" placeholder="Password"/>
-    <input type="submit" value="Join"/>
-</form>
+main page
+<span th:text="${id}"></span>, <span th:text="${role}"></span>
 </body>
 </html>

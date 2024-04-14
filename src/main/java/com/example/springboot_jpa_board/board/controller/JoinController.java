@@ -1,6 +1,7 @@
 package com.example.springboot_jpa_board.board.controller;
 
 import com.example.springboot_jpa_board.board.dto.JoinDTO;
+//import com.example.springboot_jpa_board.board.service.JoinService;
 import com.example.springboot_jpa_board.board.service.JoinService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
