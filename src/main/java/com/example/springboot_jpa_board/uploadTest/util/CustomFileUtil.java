@@ -3,6 +3,7 @@ package com.example.springboot_jpa_board.uploadTest.util;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,41 +27,46 @@ public class CustomFileUtil {
 
 
     @PostConstruct
-    public void init(){
+    public void init() {
         File tempFolder = new File(uploadPath);
-
-        if(tempFolder.exists() == false){
+        if(tempFolder.exists() == false) {
             tempFolder.mkdir();
         }
-
         uploadPath = tempFolder.getAbsolutePath();
-
-        log.info("..........");
+        log.info("-------------------------------------");
         log.info(uploadPath);
     }
 
 
-    public List<String> saveFiles(List<MultipartFile> files) throws RuntimeException {
-
+    public List<String> saveFiles(List<MultipartFile> files) throws RuntimeException{
         if(files == null || files.size() == 0){
             return null;
         }
-
         List<String> uploadNames = new ArrayList<>();
+        for (MultipartFile file : files) {
+            String savedName = UUID.randomUUID().toString() + "_"
+                    + file.getOriginalFilename();
 
-        for(MultipartFile file : files){
-            String saveName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-
-            Path savePath = Paths.get(uploadPath, saveName);
+            Path savePath = Paths.get(uploadPath, savedName);
 
             try {
-                Files.copy(file.getInputStream(), savePath);
-                uploadNames.add(saveName);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+                Files.copy(file.getInputStream(), savePath); // 원본 파일 업로드
 
-        return null;
+                String contetnType = file.getContentType();
+
+                //이미지 파일이라면
+                if(contetnType != null || contetnType.startsWith("image")){
+                    Path thumbnailPath = Paths.get(uploadPath, "s_" + savedName);
+
+                    Thumbnails.of(savePath.toFile()).size(200,200).toFile(thumbnailPath.toFile());
+                }
+
+
+                uploadNames.add(savedName);
+            } catch (IOException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }//end for
+        return uploadNames;
     }
 }
