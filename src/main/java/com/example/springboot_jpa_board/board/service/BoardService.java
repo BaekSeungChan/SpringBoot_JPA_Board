@@ -1,6 +1,8 @@
 package com.example.springboot_jpa_board.board.service;
 
 import com.example.springboot_jpa_board.board.dto.BoardDTO;
+import com.example.springboot_jpa_board.board.dto.PageRequestDTO;
+import com.example.springboot_jpa_board.board.dto.PageResponseDTO;
 import com.example.springboot_jpa_board.board.entity.Board;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,8 @@ public interface BoardService {
     void modify(BoardDTO boardDTO);
 
     void remove(Long id);
+
+    PageResponseDTO<BoardDTO> getList(PageRequestDTO pageRequestDTO);
 
 
     default BoardDTO entityToDTO(Board board){

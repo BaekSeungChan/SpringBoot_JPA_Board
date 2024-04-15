@@ -17,9 +17,20 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
+  servlet:
+    multipart:
+      max-request-size: 30MB
+      max-file-size: 10MB
+
+com:
+  example:
+    upload:
+      path: upload
+
 logging.level:
     org.hibernate.SQL: debug
     org.hibernate.orm.jdbc.bind: trace
+
 
 
 server:

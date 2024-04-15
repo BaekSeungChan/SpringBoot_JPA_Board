@@ -1,6 +1,8 @@
 package com.example.springboot_jpa_board.board.service;
 
 import com.example.springboot_jpa_board.board.dto.BoardDTO;
+import com.example.springboot_jpa_board.board.dto.PageRequestDTO;
+import com.example.springboot_jpa_board.board.dto.PageResponseDTO;
 import com.example.springboot_jpa_board.member.entity.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -76,6 +78,12 @@ class BoardServiceTest {
         boardService.remove(103L);
     }
 
+    @Test
+    public  void testGetList(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
+        PageResponseDTO result = boardService.getList(pageRequestDTO);
+        log.info(String.valueOf(result));
+    }
 
 
 }
